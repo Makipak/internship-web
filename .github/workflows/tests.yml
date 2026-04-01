@@ -37,6 +37,15 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Create Required Directories        # ← tambah ini
+        run: |
+          mkdir -p bootstrap/cache
+          mkdir -p storage/framework/cache
+          mkdir -p storage/framework/sessions
+          mkdir -p storage/framework/views
+          mkdir -p storage/logs
+          chmod -R 775 bootstrap/cache storage
+
       - name: Install Node Dependencies
         run: npm i
 
