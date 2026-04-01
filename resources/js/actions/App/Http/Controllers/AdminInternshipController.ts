@@ -79,7 +79,7 @@ dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     dashboard.form = dashboardForm
 /**
 * @see \App\Http\Controllers\AdminInternshipController::exportMethod
- * @see app/Http/Controllers/AdminInternshipController.php:93
+ * @see app/Http/Controllers/AdminInternshipController.php:89
  * @route '/api/admin/internships/export'
  */
 export const exportMethod = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -94,7 +94,7 @@ exportMethod.definition = {
 
 /**
 * @see \App\Http\Controllers\AdminInternshipController::exportMethod
- * @see app/Http/Controllers/AdminInternshipController.php:93
+ * @see app/Http/Controllers/AdminInternshipController.php:89
  * @route '/api/admin/internships/export'
  */
 exportMethod.url = (options?: RouteQueryOptions) => {
@@ -103,7 +103,7 @@ exportMethod.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AdminInternshipController::exportMethod
- * @see app/Http/Controllers/AdminInternshipController.php:93
+ * @see app/Http/Controllers/AdminInternshipController.php:89
  * @route '/api/admin/internships/export'
  */
 exportMethod.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -112,7 +112,7 @@ exportMethod.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\AdminInternshipController::exportMethod
- * @see app/Http/Controllers/AdminInternshipController.php:93
+ * @see app/Http/Controllers/AdminInternshipController.php:89
  * @route '/api/admin/internships/export'
  */
 exportMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -122,7 +122,7 @@ exportMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\AdminInternshipController::exportMethod
- * @see app/Http/Controllers/AdminInternshipController.php:93
+ * @see app/Http/Controllers/AdminInternshipController.php:89
  * @route '/api/admin/internships/export'
  */
     const exportMethodForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -132,7 +132,7 @@ exportMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\AdminInternshipController::exportMethod
- * @see app/Http/Controllers/AdminInternshipController.php:93
+ * @see app/Http/Controllers/AdminInternshipController.php:89
  * @route '/api/admin/internships/export'
  */
         exportMethodForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -141,7 +141,7 @@ exportMethod.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\AdminInternshipController::exportMethod
- * @see app/Http/Controllers/AdminInternshipController.php:93
+ * @see app/Http/Controllers/AdminInternshipController.php:89
  * @route '/api/admin/internships/export'
  */
         exportMethodForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -319,7 +319,7 @@ destroy.delete = (args: { id: string | number } | [id: string | number ] | strin
     destroy.form = destroyForm
 /**
 * @see \App\Http\Controllers\AdminInternshipController::downloadResume
- * @see app/Http/Controllers/AdminInternshipController.php:78
+ * @see app/Http/Controllers/AdminInternshipController.php:74
  * @route '/api/admin/internships/{id}/resume'
  */
 export const downloadResume = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -334,7 +334,7 @@ downloadResume.definition = {
 
 /**
 * @see \App\Http\Controllers\AdminInternshipController::downloadResume
- * @see app/Http/Controllers/AdminInternshipController.php:78
+ * @see app/Http/Controllers/AdminInternshipController.php:74
  * @route '/api/admin/internships/{id}/resume'
  */
 downloadResume.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -362,7 +362,7 @@ downloadResume.url = (args: { id: string | number } | [id: string | number ] | s
 
 /**
 * @see \App\Http\Controllers\AdminInternshipController::downloadResume
- * @see app/Http/Controllers/AdminInternshipController.php:78
+ * @see app/Http/Controllers/AdminInternshipController.php:74
  * @route '/api/admin/internships/{id}/resume'
  */
 downloadResume.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -371,7 +371,7 @@ downloadResume.get = (args: { id: string | number } | [id: string | number ] | s
 })
 /**
 * @see \App\Http\Controllers\AdminInternshipController::downloadResume
- * @see app/Http/Controllers/AdminInternshipController.php:78
+ * @see app/Http/Controllers/AdminInternshipController.php:74
  * @route '/api/admin/internships/{id}/resume'
  */
 downloadResume.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -381,7 +381,7 @@ downloadResume.head = (args: { id: string | number } | [id: string | number ] | 
 
     /**
 * @see \App\Http\Controllers\AdminInternshipController::downloadResume
- * @see app/Http/Controllers/AdminInternshipController.php:78
+ * @see app/Http/Controllers/AdminInternshipController.php:74
  * @route '/api/admin/internships/{id}/resume'
  */
     const downloadResumeForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -391,7 +391,7 @@ downloadResume.head = (args: { id: string | number } | [id: string | number ] | 
 
             /**
 * @see \App\Http\Controllers\AdminInternshipController::downloadResume
- * @see app/Http/Controllers/AdminInternshipController.php:78
+ * @see app/Http/Controllers/AdminInternshipController.php:74
  * @route '/api/admin/internships/{id}/resume'
  */
         downloadResumeForm.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -400,7 +400,7 @@ downloadResume.head = (args: { id: string | number } | [id: string | number ] | 
         })
             /**
 * @see \App\Http\Controllers\AdminInternshipController::downloadResume
- * @see app/Http/Controllers/AdminInternshipController.php:78
+ * @see app/Http/Controllers/AdminInternshipController.php:74
  * @route '/api/admin/internships/{id}/resume'
  */
         downloadResumeForm.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

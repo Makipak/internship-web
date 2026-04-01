@@ -54,11 +54,7 @@ class AdminInternshipController
     public function destroy($id): JsonResponse
     {
         try {
-            $application = InternshipApplication::find($id);
-            
-            if (!$application) {
-                return response()->json(['message' => 'Application not found'], 404);
-            }
+            $application = InternshipApplication::findOrFail($id);
             
             // Hapus file resume jika ada
             if ($application->resume_path && file_exists(storage_path('app/public/' . $application->resume_path))) {
@@ -66,7 +62,7 @@ class AdminInternshipController
             }
 
             // Delete dari database
-            $application->delete();
+            $application->forceDelete();
 
             return response()->json(['message' => 'Application deleted successfully'], 200);
         } catch (\Exception $e) {
