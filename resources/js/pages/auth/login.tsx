@@ -1,5 +1,5 @@
+import { Head, useForm } from '@inertiajs/react';
 import { useState } from 'react';
-import { Head, Link, useForm } from '@inertiajs/react';
 
 export default function Login({ status }: { status?: string }) {
     const [showPassword, setShowPassword] = useState(false);

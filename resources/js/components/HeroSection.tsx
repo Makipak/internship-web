@@ -7,7 +7,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
     // Animasi fade+slide-up saat section pertama kali muncul
-    const heroAnim = useScrollAnimation(0);
+    const { ref: heroRef, animClass: heroAnimClass } = useScrollAnimation(0);
 
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -29,9 +29,11 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
             <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-white/[0.03] blur-[120px]" />
 
             {/* Konten hero dengan animasi scroll */}
+            { }
             <div
-                ref={heroAnim.ref}
-                className={`relative z-10 text-center px-6 max-w-4xl mx-auto ${heroAnim.animClass}`}
+                ref={heroRef}
+                 
+                className={`relative z-10 text-center px-6 max-w-4xl mx-auto ${heroAnimClass}`}
             >
                 {/* Badge status pendaftaran */}
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-xs tracking-[0.2em] uppercase text-white/60 mb-8">

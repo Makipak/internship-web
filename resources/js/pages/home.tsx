@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
 import { usePage } from '@inertiajs/react';
 import { Head } from '@inertiajs/react';
-import HeroSection from '@/components/HeroSection';
+import { useEffect, useRef, useState } from 'react';
 import FormSection from '@/components/FormSection';
+import HeroSection from '@/components/HeroSection';
 import PopupModal  from '@/components/PopupModal';
 import type { PageProps } from '@/types/internship';
 
@@ -20,11 +20,15 @@ export default function Home() {
     // Pantau flash message dari Laravel, tampilkan popup saat ada response
     useEffect(() => {
         if (flash?.success) {
-            setPopupType('success');
-            setShowPopup(true);
+            setTimeout(() => {
+                setPopupType('success');
+                setShowPopup(true);
+            }, 0);
         } else if (flash?.error) {
-            setPopupType('error');
-            setShowPopup(true);
+            setTimeout(() => {
+                setPopupType('error');
+                setShowPopup(true);
+            }, 0);
         }
     }, [flash]);
 

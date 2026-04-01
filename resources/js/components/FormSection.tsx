@@ -1,7 +1,7 @@
-import { forwardRef, useState } from 'react';
 import { useForm } from '@inertiajs/react';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { forwardRef, useState } from 'react';
 import ResumeUpload from '@/components/ResumeUpload';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import type { ApplicationForm } from '@/types/internship';
 
 // Props: callback ke parent saat submit sukses atau gagal
@@ -12,7 +12,7 @@ interface FormSectionProps {
 
 // forwardRef agar parent bisa scroll ke section ini via ref
 const FormSection = forwardRef<HTMLElement, FormSectionProps>(({ onSuccess, onError }, ref) => {
-    const formAnim = useScrollAnimation(150);
+    const { ref: formRef, animClass: formAnimClass } = useScrollAnimation(150);
     const [fileName, setFileName] = useState('');
 
     // Inertia form hook — mengelola state, error validasi, dan POST request
@@ -57,9 +57,11 @@ const FormSection = forwardRef<HTMLElement, FormSectionProps>(({ onSuccess, onEr
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-white/15 to-transparent" />
 
             {/* Wrapper form dengan animasi fade+slide-up */}
+            { }
             <div
-                ref={formAnim.ref}
-                className={`w-full max-w-2xl ${formAnim.animClass}`}
+                ref={formRef}
+                 
+                className={`w-full max-w-2xl ${formAnimClass}`}
             >
                 {/* Header section form */}
                 <div className="text-center mb-10">

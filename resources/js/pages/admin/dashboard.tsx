@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Head, Link, useForm, usePage } from '@inertiajs/react';
+import { Head, useForm, usePage } from '@inertiajs/react';
+import { useState, useEffect, useCallback } from 'react';
 import type { InternshipApplication, PaginatedResponse } from '@/types/internship';
 
 interface PaginationMeta {
@@ -36,7 +36,7 @@ export default function AdminDashboard() {
     const handleLogout = () => {
         post('/logout');
     };
-    const fetchApplications = async (page = 1) => {
+    const fetchApplications = useCallback(async (page = 1) => {
         try {
             setLoading(true);
             const response = await fetch(`/api/admin/internships?page=${page}&sort_by=${sortBy}&sort_dir=${sortDir}`);
@@ -49,16 +49,16 @@ export default function AdminDashboard() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [sortBy, sortDir]);
 
     useEffect(() => {
         fetchApplications(currentPage);
-    }, []);
+    }, [currentPage, fetchApplications]);
 
     // Refetch ketika sort parameter berubah
     useEffect(() => {
         fetchApplications(1);
-    }, [sortBy, sortDir]);
+    }, [sortBy, sortDir, fetchApplications]);
 
     // Listen untuk storage change event dari window
     useEffect(() => {
@@ -70,7 +70,7 @@ export default function AdminDashboard() {
 
         window.addEventListener('storage', handleStorageChange);
         return () => window.removeEventListener('storage', handleStorageChange);
-    }, []);
+    }, [fetchApplications]);
 
     // Handle column header click untuk sorting
     const handleSort = (field: string) => {
@@ -103,7 +103,7 @@ export default function AdminDashboard() {
     };
 
     // Download resume
-    const handleDownloadResume = (id: number, firstName: string, lastName: string) => {
+    const handleDownloadResume = (id: number) => {
         window.location.href = `/api/admin/internships/${id}/resume`;
     };
 
@@ -370,7 +370,7 @@ export default function AdminDashboard() {
                                         ></iframe>
                                         <div className="flex gap-2 pt-4">
                                             <button
-                                                onClick={() => handleDownloadResume(selectedApp.id, selectedApp.first_name, selectedApp.last_name)}
+                                                onClick={() => handleDownloadResume(selectedApp.id)}
                                                 className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors"
                                             >
                                                 Download Resume
