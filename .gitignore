@@ -1,0 +1,138 @@
+# Laravel
+/.phpunit.cache
+/bootstrap/ssr
+/vendor
+/storage/*.key
+/storage/pail
+/storage/logs
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views
+/storage/framework/testing
+/bootstrap/cache
+.env
+.env.backup
+.env.production
+.env.*.backup
+.env.*.local
+
+# Node & npm
+/node_modules
+/public/build
+/public/hot
+npm-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.pnpm-lock.yaml
+
+# IDE & Editors
+.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea
+.idea/*
+*.sublime-project
+*.sublime-workspace
+.netbeans
+/.fleet
+/.zed
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9
+*.launch
+.settings/
+.vscode-test
+.history/*
+.phpactor.json
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.pem
+icons.json
+
+# Testing & Coverage
+.phpunit.result.cache
+/coverage
+coverage.xml
+junit.xml
+.coverage
+.pytest_cache
+*.coverage
+
+# Build & Dist
+/public/storage
+/dist
+/build
+out/
+.next
+.nuxt
+dist/
+
+# Local development
+.local
+*.local
+/local
+Homestead.json
+Homestead.yaml
+Vagrantfile
+LaraDock/
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+.database
+
+# Auth & Credentials
+/auth.json
+/config/auth.json
+.env.*.backup
+
+# Nova
+/.nova
+
+# Vite
+/dist
+.vite
+
+# Logs
+bootstrap/ssr/*
+!bootstrap/ssr/.gitkeep
+storage/logs/*
+!storage/logs/.gitkeep
+logs/
+*.log
+
+# IDE Generated Files
+.project
+.buildpath
+.settings
+.texlipse
+.cache
+.classpath
+
+# Generated directories
+.vagrant/
+.vagrant-hostsupdater/
+.vagrant_plugins/
+
+# MacOS specific
+.AppleDouble
+.AppleDB
+
+# Windows specific
+*.lnk
+
