@@ -13,15 +13,17 @@ class UserSeeder extends Seeder
     {
         // User admin untuk akses dashboard
         User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
+            'name' => 'Administrator',
+            'username' => 'admin',
+            'email' => 'admin@aissential.com',
             'password' => Hash::make('password123'),
         ]);
 
         // Test user untuk development
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'username' => 'testuser',
+            'email' => 'test@aissential.com',
             'password' => Hash::make('password123'),
         ]);
     }

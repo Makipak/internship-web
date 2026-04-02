@@ -39,15 +39,15 @@ class FortifyServiceProvider extends ServiceProvider
      */
     private function configureRedirection(): void
     {
-        // Redirect ke admin dashboard setelah login berhasil
+        // Custom authenticate handler untuk username
         Fortify::authenticateUsing(function (Request $request) {
             $validated = \Illuminate\Support\Facades\Validator::make($request->all(), [
-                Fortify::username() => 'required|string|email',
+                'username' => 'required|string',
                 'password' => 'required|string',
             ])->validate();
 
             if (\Illuminate\Support\Facades\Auth::attempt(
-                ['email' => $validated['email'], 'password' => $validated['password']],
+                ['username' => $validated['username'], 'password' => $validated['password']],
                 $request->boolean('remember')
             )) {
                 return \Illuminate\Support\Facades\Auth::user();
