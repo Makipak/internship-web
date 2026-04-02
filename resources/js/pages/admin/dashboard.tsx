@@ -189,7 +189,7 @@ export default function AdminDashboard() {
                         </div>
                     ) : !applications || applications.data.length === 0 ? (
                         <div className="text-center py-16 border border-white/10 rounded-xl">
-                            <p className="text-white/50">No applications found</p>
+                            <p className="text-white/50">no participants found</p>
                         </div>
                     ) : (
                         <>

@@ -22,6 +22,13 @@ export default function ResumeUpload({ fileName, error, onChange }: ResumeUpload
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) onChange(file);
+        // Reset value agar browser selalu trigger onChange meski nama file sama
+        e.target.value = '';
+    };
+
+    // Reset nilai input saat diklik agar file dengan nama sama bisa dipilih ulang
+    const handleInputClick = (e: React.MouseEvent<HTMLInputElement>) => {
+        (e.target as HTMLInputElement).value = '';
     };
 
     return (
@@ -44,6 +51,7 @@ export default function ResumeUpload({ fileName, error, onChange }: ResumeUpload
                     type="file"
                     accept=".pdf"
                     onChange={handleFileChange}
+                    onClick={handleInputClick}
                     className="hidden"
                 />
 
