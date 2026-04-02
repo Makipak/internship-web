@@ -3,7 +3,7 @@ import logo from '@/assets/Logo Type/Aissential Logotype Assets_Logotype 3.svg'
 export default function LoginHeader() {
     return (
         <div className="text-center mb-12">
-            <div className="mb-8 flex justify-center">
+            <div className="mb-4 flex justify-center">
                 <img src={logo} alt="aissentialLogo" className='h-10 w-auto'/>
 
             </div>

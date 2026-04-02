@@ -38,7 +38,7 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
             >
 
                 {/* Label brand */}
-                <div className='mb-8 flex justify-center'>
+                <div className='mb-5 flex justify-center'>
                     <img
                         src={logo}
                         alt='aissentialLogo'
@@ -47,20 +47,20 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
                 </div>
 
                 {/* Heading utama */}
-                <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-6">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-4">
                     Join Our Team
                     <br />
                     <span className="text-white/40">as an Intern</span>
                 </h1>
 
                 {/* Subtitle deskripsi */}
-                <p className="text-base sm:text-lg text-white/55 max-w-lg mx-auto leading-relaxed mb-10">
+                <p className="text-base sm:text-lg text-white/55 max-w-lg mx-auto leading-relaxed mb-4">
                     Shape the future of AI with us. We're looking for curious minds ready to build, learn, and make a real impact.
                 </p>
 
                 {/* Badge status pendaftaran */}
-                <div className='mb-8 flex justify-center'>
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-xs tracking-[0.2em] uppercase text-white/60 mb-8">
+                <div className='mb-3 flex justify-center'>
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-xs tracking-[0.2em] uppercase text-white/60 mb-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     Now Accepting Applications
                     </div>
