@@ -4,14 +4,14 @@ use App\Models\InternshipApplication;
 use App\Models\User;
 
 test('admin dashboard requires authentication', function () {
-    $response = $this->get(route('admin.dashboard'));
+    $response = $this->get(route('admin.index'));
     $response->assertRedirectToRoute('login');
 });
 
 test('authenticated user can view admin dashboard', function () {
     $user = User::factory()->create();
 
-    $response = $this->actingAs($user)->get(route('admin.dashboard'));
+    $response = $this->actingAs($user)->get(route('admin.index'));
     $response->assertOk();
 });
 
