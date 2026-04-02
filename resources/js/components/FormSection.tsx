@@ -65,7 +65,6 @@ const FormSection = forwardRef<HTMLElement, FormSectionProps>(({ onSuccess, onEr
             >
                 {/* Header section form */}
                 <div className="text-center mb-10">
-                    <p className="text-[10px] tracking-[0.4em] uppercase text-white/30 mb-3">AISSENTIAL</p>
                     <h2 className="text-3xl sm:text-4xl font-bold mb-3">Internship Application</h2>
                     <p className="text-white/45 text-sm">Fill out the form below to apply for an internship position.</p>
                 </div>
@@ -173,7 +172,7 @@ const FormSection = forwardRef<HTMLElement, FormSectionProps>(({ onSuccess, onEr
                         <button
                             type="submit"
                             disabled={processing}
-                            className="group w-full py-4 bg-white text-black font-semibold rounded-xl hover:bg-white/90 active:scale-[0.98] transition-all duration-200 hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 text-sm tracking-wide shadow-[0_0_40px_rgba(255,255,255,0.08)]"
+                            className="group w-full py-4 bg-[#0572FF] text-white font-semibold rounded-xl hover:bg-[#0572FF]/90 active:scale-[0.98] transition-all duration-200 hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 text-sm tracking-wide shadow-[0_0_40px_rgba(255,255,255,0.08)]"
                         >
                             {processing ? (
                                 // Spinner saat request sedang berjalan

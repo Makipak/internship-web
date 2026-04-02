@@ -39,7 +39,7 @@ export default function ResumeModal({ isOpen, selectedApp, onClose, onDownload }
                             <div className="flex gap-2 pt-4">
                                 <button
                                     onClick={() => onDownload(selectedApp.id)}
-                                    className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors"
+                                    className="flex-1 px-4 py-2 bg-[#0572FF] hover:bg-blue-700 rounded-lg font-medium transition-colors"
                                 >
                                     Download Resume
                                 </button>

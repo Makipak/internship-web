@@ -1,4 +1,5 @@
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import logo from '@/assets/Logo Type/Aissential Logotype Assets_Logotype 3.svg'
 
 // Props: callback untuk scroll ke section form saat tombol CTA diklik
 interface HeroSectionProps {
@@ -35,14 +36,15 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
                  
                 className={`relative z-10 text-center px-6 max-w-4xl mx-auto ${heroAnimClass}`}
             >
-                {/* Badge status pendaftaran */}
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-xs tracking-[0.2em] uppercase text-white/60 mb-8">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    Now Accepting Applications
-                </div>
 
                 {/* Label brand */}
-                <p className="text-xs tracking-[0.5em] uppercase text-white/30 mb-5">AISSENTIAL</p>
+                <div className='mb-8 flex justify-center'>
+                    <img
+                        src={logo}
+                        alt='aissentialLogo'
+                        className='h-10 w-auto opacity-90'
+                    />
+                </div>
 
                 {/* Heading utama */}
                 <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-6">
@@ -56,10 +58,18 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
                     Shape the future of AI with us. We're looking for curious minds ready to build, learn, and make a real impact.
                 </p>
 
+                {/* Badge status pendaftaran */}
+                <div className='mb-8 flex justify-center'>
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-xs tracking-[0.2em] uppercase text-white/60 mb-8">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    Now Accepting Applications
+                    </div>
+                </div>
+
                 {/* Tombol CTA — trigger smooth scroll ke form */}
                 <button
                     onClick={onScrollToForm}
-                    className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-white/90 active:scale-95 transition-all duration-300 hover:scale-105 text-sm tracking-wide shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+                    className="group inline-flex items-center gap-3 px-8 py-4 bg-[#0572FF] text-white font-semibold rounded-full hover:bg-[#0572FF]/90 active:scale-95 transition-all duration-300 hover:scale-105 text-sm tracking-wide shadow-[0_0_40px_rgba(255,255,255,0.1)]"
                 >
                     Apply Now
                     <svg

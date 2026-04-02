@@ -69,7 +69,7 @@ export default function DetailModal({ isOpen, selectedApp, onClose, onViewResume
                     <div className="flex gap-3 pt-4 border-t border-white/10">
                         <button
                             onClick={onViewResume}
-                            className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors"
+                            className="flex-1 px-4 py-2 bg-[#0572FF] hover:bg-blue-700 rounded-lg font-medium transition-colors"
                         >
                             View Resume
                         </button>

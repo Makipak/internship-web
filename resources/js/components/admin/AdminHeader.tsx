@@ -15,7 +15,7 @@ export default function AdminHeader({ onExport, onLogout }: AdminHeaderProps) {
                     <div className="flex flex-col sm:flex-row gap-3">
                         <button
                             onClick={onExport}
-                            className="w-full sm:w-auto px-6 py-2.5 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium text-sm transition-colors"
+                            className="w-full sm:w-auto px-6 py-2.5 bg-[#0572FF] hover:bg-blue-700 rounded-lg font-medium text-sm transition-colors"
                         >
                             Export to Excel
                         </button>

@@ -73,7 +73,7 @@ export default function ApplicationsTable({
                                 <div className="flex gap-2 justify-center">
                                     <button
                                         onClick={() => onViewResume(app)}
-                                        className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 rounded text-xs font-medium transition-colors"
+                                        className="px-3 py-1.5 bg-[#0572FF] hover:bg-blue-700 rounded text-xs font-medium transition-colors"
                                     >
                                         View
                                     </button>
