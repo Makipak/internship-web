@@ -39,22 +39,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     private function configureRedirection(): void
     {
-        // Custom authenticate handler untuk username
-        Fortify::authenticateUsing(function (Request $request) {
-            $validated = \Illuminate\Support\Facades\Validator::make($request->all(), [
-                'username' => 'required|string',
-                'password' => 'required|string',
-            ])->validate();
-
-            if (\Illuminate\Support\Facades\Auth::attempt(
-                ['username' => $validated['username'], 'password' => $validated['password']],
-                $request->boolean('remember')
-            )) {
-                return \Illuminate\Support\Facades\Auth::user();
-            }
-
-            return null;
-        });
+        // Fortify will use the 'username' field from config automatically
     }
 
     /**
