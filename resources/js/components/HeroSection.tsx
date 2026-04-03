@@ -1,5 +1,5 @@
+import logo from '@/assets/LogoType/Aissential Logotype Assets_Logotype 3.svg';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import logo from '@/assets/Logo Type/Aissential Logotype Assets_Logotype 3.svg'
 
 // Props: callback untuk scroll ke section form saat tombol CTA diklik
 interface HeroSectionProps {
@@ -13,27 +13,17 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-            {/* Grid lines sebagai background pattern */}
-            <div
-                className="absolute inset-0 opacity-30"
-                style={{
-                    backgroundImage:
-                        'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)',
-                    backgroundSize: '64px 64px',
-                }}
-            />
+            {/* Objek bulat berwarna dengan blur — di belakang copywriter */}
+            <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full bg-gradient-to-br from-lime-400/50 via-emerald-400/40 to-cyan-400/50 blur-[80px]" />
 
-            {/* Radial glow di tengah halaman */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(255,255,255,0.03),transparent)]" />
-
-            {/* Blob cahaya diffused untuk efek kedalaman */}
-            <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-white/[0.03] blur-[120px]" />
+            {/* Frosted glass layer di atas blob, di bawah copywriter */}
+            <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full bg-[#0a0a0a]/30 backdrop-blur-[40px]" />
 
             {/* Konten hero dengan animasi scroll */}
             { }
             <div
                 ref={heroRef}
-                 
+
                 className={`relative z-10 text-center px-6 max-w-4xl mx-auto ${heroAnimClass}`}
             >
 

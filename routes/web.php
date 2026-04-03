@@ -19,7 +19,7 @@ Route::middleware(['auth', 'web'])->group(function () {
     Route::prefix('api/admin')->middleware('web')->group(function () {
         // Specific routes harus didefinisikan terlebih dahulu
         Route::get('/internships/export', [AdminInternshipController::class, 'export']);
-        
+
         // General routes
         Route::get('/internships', [AdminInternshipController::class, 'index']);
         Route::delete('/internships/{id}', [AdminInternshipController::class, 'destroy']);
