@@ -12,7 +12,7 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
     const { ref: heroRef, animClass: heroAnimClass } = useScrollAnimation(0);
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <section className="relative h-screen max-h-[900px] flex items-center justify-center overflow-hidden">
 
             {/* background */}
             <AnimatedBackground />
