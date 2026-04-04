@@ -22,7 +22,7 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
             <div
                 ref={heroRef}
 
-                className={`relative z-10 text-center px-6 max-w-4xl mx-auto ${heroAnimClass} mt-10`}
+                className={`relative z-10 text-center px-6 max-w-4xl mx-auto ${heroAnimClass} `}
             >
 
                 {/* Label brand */}
@@ -35,7 +35,7 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
                 </div>
 
                 {/* Heading utama */}
-                <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-13">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-12">
                     Join Our Team
                     <br />
                     <span className="text-white/40">as an Intern</span>
@@ -49,7 +49,7 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
                 {/* Badge status pendaftaran */}
                 <div className='mb-10 flex justify-center'>
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-xs tracking-[0.2em] uppercase text-white/60 mb-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0572FF] animate-pulse" />
                     Now Accepting Applications
                     </div>
                 </div>
