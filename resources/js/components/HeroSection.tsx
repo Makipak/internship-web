@@ -1,4 +1,5 @@
-import logo from '@/components/assets/LogoType/Aissential Logotype Assets_Logotype 3.svg';
+import logo from '@/components/assets/LogoType/Aissential Logotype Assets_Logotype 2.svg';
+import AnimatedBackground from './AnimatedBackground';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 // Props: callback untuk scroll ke section form saat tombol CTA diklik
@@ -13,43 +14,40 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-            {/* Objek bulat berwarna dengan blur — di belakang copywriter */}
-            <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full bg-gradient-to-br from-lime-400/50 via-emerald-400/40 to-cyan-400/50 blur-[80px]" />
-
-            {/* Frosted glass layer di atas blob, di bawah copywriter */}
-            <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full bg-[#0a0a0a]/30 backdrop-blur-[40px]" />
+            {/* background */}
+            <AnimatedBackground />
 
             {/* Konten hero dengan animasi scroll */}
             { }
             <div
                 ref={heroRef}
 
-                className={`relative z-10 text-center px-6 max-w-4xl mx-auto ${heroAnimClass}`}
+                className={`relative z-10 text-center px-6 max-w-4xl mx-auto ${heroAnimClass} mt-10`}
             >
 
                 {/* Label brand */}
-                <div className='mb-5 flex justify-center'>
+                <div className='mb-12 flex justify-center'>
                     <img
                         src={logo}
                         alt='aissentialLogo'
-                        className='h-10 w-auto opacity-90'
+                        className='h-6 w-auto opacity-90'
                     />
                 </div>
 
                 {/* Heading utama */}
-                <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-4">
+                <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-13">
                     Join Our Team
                     <br />
                     <span className="text-white/40">as an Intern</span>
                 </h1>
 
                 {/* Subtitle deskripsi */}
-                <p className="text-base sm:text-lg text-white/55 max-w-lg mx-auto leading-relaxed mb-4">
+                <p className="text-base sm:text-lg text-white/55 max-w-lg mx-auto leading-relaxed mb-2">
                     Shape the future of AI with us. We're looking for curious minds ready to build, learn, and make a real impact.
                 </p>
 
                 {/* Badge status pendaftaran */}
-                <div className='mb-3 flex justify-center'>
+                <div className='mb-10 flex justify-center'>
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-xs tracking-[0.2em] uppercase text-white/60 mb-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     Now Accepting Applications
