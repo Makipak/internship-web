@@ -1,4 +1,4 @@
-import logo from '@/assets/LogoType/Aissential Logotype Assets_Logotype 3.svg';
+import logo from '@/components/assets/LogoType/Aissential Logotype Assets_Logotype 3.svg';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 // Props: callback untuk scroll ke section form saat tombol CTA diklik
