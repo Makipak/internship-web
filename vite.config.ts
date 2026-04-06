@@ -26,11 +26,9 @@ export default defineConfig({
     },
     build: {
         rollupOptions: {
-            external: [],
+            external: ['finisher-header'],
             output: {
-                manualChunks: {
-                    'finisher-header': ['finisher-header'],
-                },
+                manualChunks: {},
             },
         },
     },
