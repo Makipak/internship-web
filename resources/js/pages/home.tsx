@@ -51,7 +51,7 @@ export default function Home() {
 
     return (
         <>
-            <Head title="AISSENTIAL | Internship Application" />
+            <Head title="Aissential Internship" />
 
             {/* Layout utama — dark theme */}
             <div className="min-h-screen bg-[#0a0a0a] text-white font-sans scroll-smooth">

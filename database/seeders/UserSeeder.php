@@ -8,23 +8,21 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-    // Buat user admin dan test user
+    /**
+     * Seed the admin user for the application.
+     * 
+     * Default credentials (CHANGE IMMEDIATELY IN PRODUCTION):
+     * - Username: admin
+     * - Password: password
+     */
     public function run(): void
     {
-        // User admin untuk akses dashboard
+        // Create admin user for dashboard access
         User::factory()->create([
             'name' => 'Administrator',
             'username' => 'admin',
-            'email' => 'admin@aissential.com',
-            'password' => Hash::make('password123'),
-        ]);
-
-        // Test user untuk development
-        User::factory()->create([
-            'name' => 'Test User',
-            'username' => 'testuser',
-            'email' => 'test@aissential.com',
-            'password' => Hash::make('password123'),
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'),
         ]);
     }
 }

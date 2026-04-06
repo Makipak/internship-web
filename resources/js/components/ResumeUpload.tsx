@@ -7,21 +7,39 @@ interface ResumeUploadProps {
     onChange: (file: File) => void;
 }
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB in bytes
+
 export default function ResumeUpload({ fileName, error, onChange }: ResumeUploadProps) {
     const [isDragOver, setIsDragOver] = useState(false);
+    const [sizeError, setSizeError] = useState<string>('');
 
     // Handle file yang di-drop — hanya terima PDF
     const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         setIsDragOver(false);
         const file = e.dataTransfer.files?.[0];
-        if (file && file.type === 'application/pdf') onChange(file);
+        if (file && file.type === 'application/pdf') {
+            if (file.size > MAX_FILE_SIZE) {
+                setSizeError('File size must be less than 5MB');
+                return;
+            }
+            setSizeError('');
+            onChange(file);
+        }
     };
 
     // Handle file yang dipilih via dialog browser
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
-        if (file) onChange(file);
+        if (file) {
+            if (file.size > MAX_FILE_SIZE) {
+                setSizeError('File size must be less than 5MB');
+                e.target.value = '';
+                return;
+            }
+            setSizeError('');
+            onChange(file);
+        }
         // Reset value agar browser selalu trigger onChange meski nama file sama
         e.target.value = '';
     };
@@ -70,8 +88,10 @@ export default function ResumeUpload({ fileName, error, onChange }: ResumeUpload
                 )}
             </div>
 
-            {/* Pesan error validasi dari Inertia */}
-            {error && <p className="text-red-400 text-xs mt-1.5">{error}</p>}
+            {/* Pesan error validasi dari Inertia atau size error */}
+            {(error || sizeError) && (
+                <p className="text-red-400 text-xs mt-1.5">{sizeError || error}</p>
+            )}
         </div>
     );
 }
