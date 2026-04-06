@@ -53,7 +53,7 @@ export default function AnimatedBackground() {
                                 canvas.style.pointerEvents = 'none';
                             }
                         }, 100);
-                    } catch (err) {
+                    } catch {
                         // Silent error
                     }
                 }

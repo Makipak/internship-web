@@ -24,4 +24,14 @@ export default defineConfig({
     esbuild: {
         jsx: 'automatic',
     },
+    build: {
+        rollupOptions: {
+            external: [],
+            output: {
+                manualChunks: {
+                    'finisher-header': ['finisher-header'],
+                },
+            },
+        },
+    },
 });

@@ -1,6 +1,6 @@
 import logo from '@/components/assets/LogoType/Aissential Logotype Assets_Logotype 2.svg';
-import AnimatedBackground from './AnimatedBackground';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import AnimatedBackground from './AnimatedBackground';
 
 // Props: callback untuk scroll ke section form saat tombol CTA diklik
 interface HeroSectionProps {

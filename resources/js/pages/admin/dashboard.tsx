@@ -1,13 +1,13 @@
-import { Head, useForm, usePage, router } from '@inertiajs/react';
+import { Head, useForm, usePage } from '@inertiajs/react';
 import { useState, useEffect, useCallback } from 'react';
-import type { InternshipApplication, PaginatedResponse } from '@/types/internship';
 import AdminHeader from '@/components/admin/AdminHeader';
-import ApplicationsTable from '@/components/admin/ApplicationsTable';
 import ApplicationsCard from '@/components/admin/ApplicationsCard';
+import ApplicationsTable from '@/components/admin/ApplicationsTable';
+import DeleteConfirmationDialog from '@/components/admin/DeleteConfirmationDialog';
+import DetailModal from '@/components/admin/DetailModal';
 import PaginationControls from '@/components/admin/PaginationControls';
 import ResumeModal from '@/components/admin/ResumeModal';
-import DetailModal from '@/components/admin/DetailModal';
-import DeleteConfirmationDialog from '@/components/admin/DeleteConfirmationDialog';
+import type { InternshipApplication, PaginatedResponse } from '@/types/internship';
 
 interface PaginationMeta {
     current_page: number;
