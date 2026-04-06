@@ -27,6 +27,3 @@ Route::middleware(['auth', 'web'])->group(function () {
     });
 });
 
-require __DIR__.'/settings.php';
-
-
