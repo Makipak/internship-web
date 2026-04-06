@@ -30,7 +30,7 @@
             }
         </style>
 
-        <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        <title inertia>{{ config('app.name', 'Internship Application') }}</title>
 
         <link rel="icon" href="/Aissential Logomark Assets_Logomark 1.svg" type="image/svg+xml">
 

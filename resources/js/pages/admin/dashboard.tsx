@@ -42,8 +42,9 @@ export default function AdminDashboard() {
     // Logout handler
     const handleLogout = () => {
         post('/logout', {
-            onSuccess: () => {
-                router.visit('/login');
+            preserveScroll: true,
+            onFinish: () => {
+                window.location.href = '/login';
             }
         });
     };
