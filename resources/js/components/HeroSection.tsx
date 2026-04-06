@@ -21,7 +21,7 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
             { }
             <div
                 ref={heroRef}
-                className={`relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto w-full my-auto transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+                className={`relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto w-full my-auto pb-16 sm:pb-20 tablet:pb-28 md:pb-24 lg:pb-20 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
             >
 
                 {/* Label brand */}
