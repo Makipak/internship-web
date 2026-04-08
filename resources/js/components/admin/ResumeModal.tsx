@@ -10,13 +10,10 @@ interface ResumeModalProps {
     selectedApp: InternshipApplication | null;
     onClose: () => void;
     onDownload: (id: number) => void;
-    onTextExtracted?: (text: string) => void;
+    // onTextExtracted?: (text: string) => void;
 }
 
-function PDFCanvas( { resumePath, onTextExtracted }: {
-    resumePath: string;
-    onTextExtracted?: (text: string) => void;
-}) {
+function PDFCanvas( { resumePath }: { resumePath: string}) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [status, setStatus] = useState<"loading" | "done" | "error">("loading");
 
@@ -102,13 +99,13 @@ function PDFCanvas( { resumePath, onTextExtracted }: {
                 }
 
                 // extract teks dari semua halaman di dalam pdf
-                let fullText = "";
+                {/*let fullText = "";
                 for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++){
                     const page = await pdf.getPage(pageNum);
                     const textContent = await page.getTextContent();
                     fullText += textContent.items.map((item: any) => item.str).join(' ') + '\n';
                 }
-                onTextExtracted?.(fullText);
+                onTextExtracted?.(fullText);*/}
 
                 setStatus("done");
             } catch (err) {
@@ -143,7 +140,7 @@ function PDFCanvas( { resumePath, onTextExtracted }: {
 
 
 
-export default function ResumeModal({ isOpen, selectedApp, onClose, onDownload, onTextExtracted }: ResumeModalProps) {
+export default function ResumeModal({ isOpen, selectedApp, onClose, onDownload }: ResumeModalProps) {
     if (!isOpen || !selectedApp) return null;
 
     return (
@@ -175,7 +172,6 @@ export default function ResumeModal({ isOpen, selectedApp, onClose, onDownload, 
                             ></iframe> */}
                             <PDFCanvas 
                             resumePath={selectedApp.resume_path} 
-                            onTextExtracted={onTextExtracted}
                             />
 
                             <div className="flex gap-2 pt-4">

@@ -35,7 +35,7 @@ export default function AdminDashboard() {
     const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
     const { post } = useForm();
     const { props } = usePage<any>();
-    const [extractedText, setExtractedText] = useState<string>('');
+    
 
     // Get CSRF token dari Inertia props
     const csrfToken = (props as any)?.['csrf_token'] || '';
@@ -229,7 +229,6 @@ export default function AdminDashboard() {
                     selectedApp={selectedApp}
                     onClose={() => setShowResumeModal(false)}
                     onDownload={handleDownloadResume}
-                    onTextExtracted={(text) => setExtractedText(text)}
                 />
 
                 {/* Detail Modal */}
@@ -245,7 +244,6 @@ export default function AdminDashboard() {
                         setShowDetailModal(false);
                         handleDeleteClick(selectedApp!.id);
                     }}
-                    resumeText={extractedText}
                 />
 
                 {/* Delete Confirmation Dialog */}
