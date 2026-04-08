@@ -10,9 +10,13 @@ interface ResumeModalProps {
     selectedApp: InternshipApplication | null;
     onClose: () => void;
     onDownload: (id: number) => void;
+    onTextExtracted?: (text: string) => void;
 }
 
-function PDFCanvas({ resumePath }: { resumePath: string }) {
+function PDFCanvas( { resumePath, onTextExtracted }: {
+    resumePath: string;
+    onTextExtracted?: (text: string) => void;
+}) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [status, setStatus] = useState<"loading" | "done" | "error">("loading");
 
@@ -97,6 +101,15 @@ function PDFCanvas({ resumePath }: { resumePath: string }) {
                     offsetY += cropH + GAP;
                 }
 
+                // extract teks dari semua halaman di dalam pdf
+                let fullText = "";
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++){
+                    const page = await pdf.getPage(pageNum);
+                    const textContent = await page.getTextContent();
+                    fullText += textContent.items.map((item: any) => item.str).join(' ') + '\n';
+                }
+                onTextExtracted?.(fullText);
+
                 setStatus("done");
             } catch (err) {
                 console.error("PDF render error:", err);
@@ -129,7 +142,8 @@ function PDFCanvas({ resumePath }: { resumePath: string }) {
 }
 
 
-export default function ResumeModal({ isOpen, selectedApp, onClose, onDownload }: ResumeModalProps) {
+
+export default function ResumeModal({ isOpen, selectedApp, onClose, onDownload, onTextExtracted }: ResumeModalProps) {
     if (!isOpen || !selectedApp) return null;
 
     return (
@@ -159,7 +173,10 @@ export default function ResumeModal({ isOpen, selectedApp, onClose, onDownload }
                                 className="w-full h-[600px] border border-white/10 rounded-lg"
                                 title="Resume PDF"
                             ></iframe> */}
-                            <PDFCanvas resumePath={selectedApp.resume_path} />
+                            <PDFCanvas 
+                            resumePath={selectedApp.resume_path} 
+                            onTextExtracted={onTextExtracted}
+                            />
 
                             <div className="flex gap-2 pt-4">
                                 <button

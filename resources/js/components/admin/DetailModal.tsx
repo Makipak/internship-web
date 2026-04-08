@@ -6,9 +6,10 @@ interface DetailModalProps {
     onClose: () => void;
     onViewResume: () => void;
     onDelete: () => void;
+    resumeText?: string;
 }
 
-export default function DetailModal({ isOpen, selectedApp, onClose, onViewResume, onDelete }: DetailModalProps) {
+export default function DetailModal({ isOpen, selectedApp, onClose, onViewResume, onDelete, resumeText }: DetailModalProps) {
     if (!isOpen || !selectedApp) return null;
 
     return (
@@ -65,6 +66,15 @@ export default function DetailModal({ isOpen, selectedApp, onClose, onViewResume
                         <label className="text-xs uppercase tracking-wider text-white/50">About</label>
                         <p className="text-sm font-medium mt-2 whitespace-pre-wrap break-words leading-relaxed">{selectedApp.about}</p>
                     </div>
+
+                    {resumeText && (
+                        <div className="min-w-0">
+                            <label className="text-xs uppercase tracking-wider text-white/50">Resume Content</label>
+                            <p className="text-sm font-medium mt-2 whitespace-pre-wrap break-words leading-relaxed">
+                                {resumeText}
+                            </p>
+                        </div>
+                    )}
 
                     <div className="flex gap-3 pt-4 border-t border-white/10">
                         <button
