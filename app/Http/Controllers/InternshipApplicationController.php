@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreInternshipApplicationRequest;
 use App\Models\InternshipApplication;
 use Illuminate\Http\RedirectResponse;
+use App\Jobs\ExtractResumeText;
 
 class InternshipApplicationController 
 {
@@ -15,7 +16,7 @@ class InternshipApplicationController
         $resumePath = $request->file('resume')->store('resumes', 'public');
 
         // Simpan data pendaftaran ke database
-        InternshipApplication::create([
+        $application = InternshipApplication::create([
             'first_name'  => $request->string('first_name'),
             'last_name'   => $request->string('last_name'),
             'email'       => $request->string('email'),
@@ -23,6 +24,8 @@ class InternshipApplicationController
             'about'       => $request->string('about'),
             'resume_path' => $resumePath,
         ]);
+
+        ExtractResumeText::dispatch($application);
 
         // Kirim flash message sukses ke frontend via Inertia
         return back()->with('success', 'Application submitted successfully!');

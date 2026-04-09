@@ -17,5 +17,6 @@ class InternshipApplication extends Model
         'phone',
         'about',
         'resume_path',
+        'resume_text',
     ];
 }

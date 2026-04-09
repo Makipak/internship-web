@@ -86,6 +86,20 @@ export default function AdminDashboard() {
         return () => window.removeEventListener('storage', handleStorageChange);
     }, [fetchApplications]);
 
+    // refetch resumetext
+    useEffect(() => {
+        if (!applications) return;
+    
+        const hasPending = applications.data.some(app => !app.resume_text);
+        if (!hasPending) return;
+
+        const interval = setInterval(() => {
+            fetchApplications(currentPage);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [applications, currentPage, fetchApplications]);
+
     // Handle column header click untuk sorting
     const handleSort = (field: string) => {
         if (sortBy === field) {

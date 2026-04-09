@@ -26,6 +26,7 @@ export interface InternshipApplication {
     phone: string;
     about: string;
     resume_path: string;
+    resume_text?: string;
     created_at: string;
     updated_at: string;
 }
