@@ -4,17 +4,23 @@ interface ApplicationsCardProps {
     applications: InternshipApplication[];
     onViewResume: (app: InternshipApplication) => void;
     onDelete: (id: number) => void;
+    onRowClick: (app: InternshipApplication) => void;
 }
 
 export default function ApplicationsCard({
     applications,
     onViewResume,
-    onDelete
+    onDelete,
+    onRowClick
 }: ApplicationsCardProps) {
     return (
         <div className="md:hidden space-y-4">
             {applications.map((app, index) => (
-                <div key={app.id} className="bg-white/[0.02] border border-white/10 rounded-lg p-4">
+                <div 
+                    key={app.id} 
+                    className="bg-white/[0.02] border border-white/10 rounded-lg p-4 cursor-pointer hover:bg-white/[0.03] transition-colors"
+                    onClick={() => onRowClick(app)}
+                >
                     <div className="flex justify-between items-start mb-3">
                         <div>
                             <p className="font-medium text-sm">{app.first_name} {app.last_name}</p>
@@ -29,7 +35,7 @@ export default function ApplicationsCard({
                         <p className="truncate">{app.phone}</p>
                         <p className="line-clamp-2">{app.about}</p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
                         <button
                             onClick={() => onViewResume(app)}
                             className="flex-1 px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded text-xs font-medium transition-colors"

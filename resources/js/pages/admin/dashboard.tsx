@@ -225,6 +225,7 @@ export default function AdminDashboard() {
                                 applications={applications.data}
                                 onViewResume={handleViewResume}
                                 onDelete={handleDeleteClick}
+                                onRowClick={handleRowClick}
                             />
 
                             {/* Pagination */}

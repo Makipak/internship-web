@@ -25,7 +25,7 @@ export default function ApplicationsTable({
     };
 
     return (
-        <div className="hidden md:block overflow-hidden border border-white/10 rounded-xl bg-white/[0.02]">
+        <div className="hidden md:block overflow-x-auto border border-white/10 rounded-xl bg-white/[0.02]">
             <table className="w-full">
                 <thead className="bg-white/[0.05] border-b border-white/10">
                     <tr>
