@@ -6,10 +6,9 @@ interface DetailModalProps {
     onClose: () => void;
     onViewResume: () => void;
     onDelete: () => void;
-    resumeText?: string;
 }
 
-export default function DetailModal({ isOpen, selectedApp, onClose, onViewResume, onDelete, resumeText }: DetailModalProps) {
+export default function DetailModal({ isOpen, selectedApp, onClose, onViewResume, onDelete }: DetailModalProps) {
     if (!isOpen || !selectedApp) return null;
 
     return (

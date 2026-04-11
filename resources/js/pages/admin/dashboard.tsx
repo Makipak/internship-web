@@ -35,7 +35,9 @@ export default function AdminDashboard() {
     const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
     const { post } = useForm();
     const { props } = usePage<any>();
+
     
+
 
     // Get CSRF token dari Inertia props
     const csrfToken = (props as any)?.['csrf_token'] || '';
@@ -50,9 +52,9 @@ export default function AdminDashboard() {
         });
     };
 
-    const fetchApplications = useCallback(async (page = 1) => {
+    const fetchApplications = useCallback(async (page = 1, silent = false) => {
         try {
-            setLoading(true);
+            if (!silent) setLoading(true);
             const response = await fetch(`/api/admin/internships?page=${page}&sort_by=${sortBy}&sort_dir=${sortDir}`);
             if (!response.ok) throw new Error('Failed to fetch applications');
             const data = await response.json();
@@ -61,18 +63,13 @@ export default function AdminDashboard() {
         } catch (err) {
             setError(err instanceof Error ? err.message : 'An error occurred');
         } finally {
-            setLoading(false);
+            if (!silent) setLoading(false);
         }
     }, [sortBy, sortDir]);
 
     useEffect(() => {
-        fetchApplications(currentPage);
-    }, [currentPage, fetchApplications]);
-
-    // Refetch ketika sort parameter berubah
-    useEffect(() => {
         fetchApplications(1);
-    }, [sortBy, sortDir, fetchApplications]);
+    }, [fetchApplications]);
 
     // Listen untuk storage change event dari window
     useEffect(() => {
@@ -86,15 +83,15 @@ export default function AdminDashboard() {
         return () => window.removeEventListener('storage', handleStorageChange);
     }, [fetchApplications]);
 
-    // refetch resumetext
+    // refetch resumetext (silent polling)
     useEffect(() => {
         if (!applications) return;
-    
+
         const hasPending = applications.data.some(app => !app.resume_text);
         if (!hasPending) return;
 
         const interval = setInterval(() => {
-            fetchApplications(currentPage);
+            fetchApplications(currentPage, true);
         }, 3000);
 
         return () => clearInterval(interval);
@@ -210,7 +207,7 @@ export default function AdminDashboard() {
                     ) : (
                         <>
                             {/* Table for desktop */}
-                            <ApplicationsTable 
+                            <ApplicationsTable
                                 applications={applications.data}
                                 sortBy={sortBy}
                                 sortDir={sortDir}
