@@ -5,6 +5,12 @@ import laravel from 'laravel-vite-plugin';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+    server: {
+        hmr: {
+            host: 'localhost',
+        }
+    },
+
     plugins: [
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.tsx'],
@@ -26,7 +32,6 @@ export default defineConfig({
     },
     build: {
         rollupOptions: {
-            external: ['finisher-header'],
             output: {
                 manualChunks: {},
             },

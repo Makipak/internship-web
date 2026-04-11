@@ -1,6 +1,7 @@
 import { usePage } from '@inertiajs/react';
 import { Head } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
+import AnimatedBackground from '@/components/AnimatedBackground';
 import FormSection from '@/components/FormSection';
 import HeroSection from '@/components/HeroSection';
 import PopupModal  from '@/components/PopupModal';
@@ -55,6 +56,8 @@ export default function Home() {
 
             {/* Layout utama — dark theme */}
             <div className="min-h-screen bg-[#0a0a0a] text-white font-sans scroll-smooth">
+
+                <AnimatedBackground/>
 
                 {/* Section 1: Welcome / Hero */}
                 <HeroSection onScrollToForm={scrollToForm} />
