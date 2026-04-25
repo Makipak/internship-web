@@ -60,7 +60,7 @@ const FormSection = forwardRef<HTMLElement, FormSectionProps>(({ onSuccess, onEr
             { }
             <div
                 ref={formRef}
-                 
+
                 className={`w-full max-w-2xl ${formAnimClass}`}
             >
                 {/* Header section form */}
@@ -91,7 +91,7 @@ const FormSection = forwardRef<HTMLElement, FormSectionProps>(({ onSuccess, onEr
 
                             <div>
                                 <label className="block text-[10px] uppercase tracking-[0.2em] text-white/45 mb-2">
-                                    Last Name <span className="text-red-400">*</span>
+                                    Last Name <span className="text-white/30 text-[9px] normal-case tracking-normal">(Optional)</span>
                                 </label>
                                 <input
                                     type="text"

@@ -33,10 +33,11 @@ export default function AdminDashboard() {
     const [currentPage, setCurrentPage] = useState(1);
     const [sortBy, setSortBy] = useState('first_name');
     const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
+    const [selectedIds, setSelectedIds] = useState<number[]>([]);
     const { post } = useForm();
     const { props } = usePage<any>();
 
-    
+
 
 
     // Get CSRF token dari Inertia props
@@ -107,6 +108,27 @@ export default function AdminDashboard() {
         }
     };
 
+    // toggle select satu item
+    const handleSelectOne = (id: number) => {
+        setSelectedIds((prev) =>
+            prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+        );
+    };
+
+    // toggle select semua item
+    const handleSelectAll = () => {
+        if (!applications) return;
+        const currentIds = applications.data.map((app) => app.id);
+        const allSelected = currentIds.every((id) => selectedIds.includes(id));
+        if (allSelected) {
+            // Unselect semua di halaman ini
+            setSelectedIds((prev) => prev.filter((id) => !currentIds.includes(id)));
+        } else {
+            // Select semua di halaman ini, gabung dengan yang sudah ada
+            setSelectedIds((prev) => [...new Set([...prev, ...currentIds])]);
+        }
+    };
+
     // View resume dalam modal
     const handleViewResume = (app: InternshipApplication) => {
         setSelectedApp(app);
@@ -144,6 +166,7 @@ export default function AdminDashboard() {
             });
             const data = await response.json();
             if (!response.ok) throw new Error(data.message || 'Failed to delete');
+            setSelectedIds((prev) => prev.filter((id) => id !== deleteId));
             await fetchApplications(currentPage);
             setShowDeleteDialog(false);
             setDeleteId(null);
@@ -154,8 +177,10 @@ export default function AdminDashboard() {
 
     // Export ke Excel
     const handleExport = async () => {
+        if(selectedIds.length === 0) return;
         try {
-            const response = await fetch('/api/admin/internships/export');
+            const ids = selectedIds.join(',');
+            const response = await fetch(`/api/admin/internships/export?ids=${ids}`);
             if (!response.ok) throw new Error('Export failed');
             const { csv, fileName } = await response.json();
 
@@ -164,6 +189,8 @@ export default function AdminDashboard() {
             link.href = URL.createObjectURL(blob);
             link.download = fileName;
             link.click();
+
+            URL.revokeObjectURL(link.href);
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Export failed');
         }
@@ -185,7 +212,7 @@ export default function AdminDashboard() {
             <Head title="Admin Dashboard" />
             <div className="min-h-screen bg-[#0a0a0a] text-white">
                 {/* Header */}
-                <AdminHeader onExport={handleExport} onLogout={handleLogout} />
+                <AdminHeader onExport={handleExport} onLogout={handleLogout} selectedCount={selectedIds.length}/>
 
                 {/* Main Content */}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -215,6 +242,9 @@ export default function AdminDashboard() {
                                 onViewResume={handleViewResume}
                                 onDelete={handleDeleteClick}
                                 onRowClick={handleRowClick}
+                                selectedIds={selectedIds}
+                                onSelectOne={handleSelectOne}
+                                onSelectAll={handleSelectAll}
                             />
 
                             {/* Card view for mobile */}
@@ -223,6 +253,8 @@ export default function AdminDashboard() {
                                 onViewResume={handleViewResume}
                                 onDelete={handleDeleteClick}
                                 onRowClick={handleRowClick}
+                                selectedIds={selectedIds}
+                                onSelectOne={handleSelectOne}
                             />
 
                             {/* Pagination */}

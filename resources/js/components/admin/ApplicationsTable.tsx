@@ -8,6 +8,9 @@ interface ApplicationsTableProps {
     onViewResume: (app: InternshipApplication) => void;
     onDelete: (id: number) => void;
     onRowClick: (app: InternshipApplication) => void;
+    selectedIds: number[];
+    onSelectOne: (id: number) => void;
+    onSelectAll: () => void;
 }
 
 export default function ApplicationsTable({
@@ -17,39 +20,64 @@ export default function ApplicationsTable({
     onSort,
     onViewResume,
     onDelete,
-    onRowClick
+    onRowClick,
+    selectedIds,
+    onSelectOne,
+    onSelectAll,
 }: ApplicationsTableProps) {
     const renderSortIndicator = (field: string) => {
         if (sortBy !== field) return '';
         return sortDir === 'asc' ? ' ↑' : ' ↓';
     };
 
+    // cek semua udah di select
+    const allSelected =
+        applications.length > 0 && applications.every((app) => selectedIds.includes(app.id));
+
+    // cek sebagian sudah di select
+    const someSelected =
+        applications.some((app) => selectedIds.includes(app.id)) && !allSelected;
+
     return (
         <div className="hidden md:block overflow-x-auto border border-white/10 rounded-xl bg-white/[0.02]">
             <table className="w-full">
                 <thead className="bg-white/[0.05] border-b border-white/10">
                     <tr>
+                        <th
+                            className="px-4 py-3 text-center"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <input
+                                type="checkbox"
+                                checked={allSelected}
+                                ref={(el) => {
+                                    if (el) el.indeterminate = someSelected;
+                                }}
+                                onChange={onSelectAll}
+                                className="w-4 h-4 rounded border-white/30 bg-white/10 accent-blue-500 cursor-pointer"
+                            />
+                        </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-white/60 uppercase tracking-wider">No</th>
-                        <th 
+                        <th
                             onClick={() => onSort('first_name')}
                             className="px-6 py-3 text-left text-xs font-medium text-white/60 uppercase tracking-wider cursor-pointer hover:text-white/80 transition-colors"
                         >
                             Name{renderSortIndicator('first_name')}
                         </th>
-                        <th 
+                        <th
                             onClick={() => onSort('email')}
                             className="px-6 py-3 text-left text-xs font-medium text-white/60 uppercase tracking-wider cursor-pointer hover:text-white/80 transition-colors"
                         >
                             Email{renderSortIndicator('email')}
                         </th>
-                        <th 
+                        <th
                             onClick={() => onSort('phone')}
                             className="px-6 py-3 text-left text-xs font-medium text-white/60 uppercase tracking-wider cursor-pointer hover:text-white/80 transition-colors"
                         >
                             Phone{renderSortIndicator('phone')}
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-white/60 uppercase tracking-wider">About</th>
-                        <th 
+                        <th
                             onClick={() => onSort('created_at')}
                             className="px-6 py-3 text-left text-xs font-medium text-white/60 uppercase tracking-wider cursor-pointer hover:text-white/80 transition-colors"
                         >
@@ -60,7 +88,19 @@ export default function ApplicationsTable({
                 </thead>
                 <tbody className="divide-y divide-white/10">
                     {applications.map((app, index) => (
-                        <tr key={app.id} className="hover:bg-white/[0.03] transition-colors cursor-pointer" onClick={() => onRowClick(app)}>
+                        <tr key={app.id} className="hover:bg-white/[0.03] transition-colors cursor-pointer ${selectedIds.includes(app.id) ? 'bg-blue-500/10' : ''}" onClick={() => onRowClick(app)}>
+
+                            <td
+                                className="px-4 py-4 text-center"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <input
+                                    type="checkbox"
+                                    checked={selectedIds.includes(app.id)}
+                                    onChange={() => onSelectOne(app.id)}
+                                    className="w-4 h-4 rounded border-white/30 bg-white/10 accent-blue-500 cursor-pointer"
+                                />
+                            </td>
                             <td className="px-6 py-4 text-sm text-white/70">{index + 1}</td>
                             <td className="px-6 py-4 text-sm font-medium">{app.first_name} {app.last_name}</td>
                             <td className="px-6 py-4 text-sm text-white/70">{app.email}</td>

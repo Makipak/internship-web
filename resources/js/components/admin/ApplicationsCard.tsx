@@ -5,23 +5,39 @@ interface ApplicationsCardProps {
     onViewResume: (app: InternshipApplication) => void;
     onDelete: (id: number) => void;
     onRowClick: (app: InternshipApplication) => void;
+    selectedIds: number[];
+    onSelectOne: (id: number) => void;
 }
 
 export default function ApplicationsCard({
     applications,
     onViewResume,
     onDelete,
-    onRowClick
+    onRowClick,
+    selectedIds,
+    onSelectOne,
 }: ApplicationsCardProps) {
     return (
         <div className="md:hidden space-y-4">
             {applications.map((app, index) => (
-                <div 
-                    key={app.id} 
-                    className="bg-white/[0.02] border border-white/10 rounded-lg p-4 cursor-pointer hover:bg-white/[0.03] transition-colors"
+                <div
+                    key={app.id}
+                    className="bg-white/[0.02] border border-white/10 rounded-lg p-4 cursor-pointer hover:bg-white/[0.03] transition-colors ${
+                        selectedIds.includes(app.id)
+                            ? 'bg-blue-500/10 border-blue-500/30'
+                            : 'bg-white/[0.02] border-white/10 hover:bg-white/[0.03]'
+                    }"
                     onClick={() => onRowClick(app)}
                 >
                     <div className="flex justify-between items-start mb-3">
+                        <div className="flex items-center gap-3">
+                            <input
+                                type="checkbox"
+                                    checked={selectedIds.includes(app.id)}
+                                    onChange={() => onSelectOne(app.id)}
+                                    className="w-4 h-4 rounded border-white/30 bg-white/10 accent-blue-500 cursor-pointer"
+                            />
+                        </div>
                         <div>
                             <p className="font-medium text-sm">{app.first_name} {app.last_name}</p>
                             <p className="text-xs text-white/50">No: {index + 1}</p>

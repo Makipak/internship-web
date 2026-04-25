@@ -55,7 +55,7 @@ class AdminInternshipController
     {
         try {
             $application = InternshipApplication::findOrFail($id);
-            
+
             // Hapus file resume jika ada
             if ($application->resume_path && file_exists(storage_path('app/public/' . $application->resume_path))) {
                 unlink(storage_path('app/public/' . $application->resume_path));
@@ -86,12 +86,31 @@ class AdminInternshipController
     }
 
     // Export semua data ke CSV
-    public function export(): JsonResponse
+    public function export(Request $request): JsonResponse
     {
-        $applications = InternshipApplication::orderBy('created_at', 'desc')->get();
+        $ids = $request->query('ids');
+
+        // tolak kalau id tidak ada
+        if(!$ids){
+            return response()->json(['message' => 'No Data Selected'], 422);
+        }
+
+        // filter untuk nilai numerik saja
+        $idsArray = array_filter(explode(',', $ids), fn($ids) => is_numeric($ids));
+
+        if(empty($idsArray)){
+            return response()->json(['message' => 'Invalid Data Selected'], 422);
+        }
+
+        $applications = InternshipApplication::whereIn('id', $idsArray)
+            ->orderBy('created_at', 'desc')->get();
+
+        if($applications->isEmpty()){
+            return response() -> json(['message' => 'No Data Found'], 400);
+        }
 
         $csv = "first_name,last_name,email,phone,about,created_at\n";
-        
+
         foreach ($applications as $app) {
             $csv .= '"' . addslashes($app->first_name) . '",';
             $csv .= '"' . addslashes($app->last_name) . '",';
@@ -104,8 +123,8 @@ class AdminInternshipController
         $fileName = 'internship_applications_' . now()->format('Y-m-d_H-i-s') . '.csv';
 
         return response()->json([
-            'csv' => $csv,
-            'fileName' => $fileName
+            'csv'      => $csv,
+            'fileName' => $fileName,
         ]);
     }
 }

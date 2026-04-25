@@ -1,9 +1,10 @@
 interface AdminHeaderProps {
     onExport: () => void;
     onLogout: () => void;
+    selectedCount: number;
 }
 
-export default function AdminHeader({ onExport, onLogout }: AdminHeaderProps) {
+export default function AdminHeader({ onExport, onLogout, selectedCount }: AdminHeaderProps) {
     return (
         <div className="border-b border-white/10 bg-white/[0.02]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -15,9 +16,10 @@ export default function AdminHeader({ onExport, onLogout }: AdminHeaderProps) {
                     <div className="flex flex-col sm:flex-row gap-3">
                         <button
                             onClick={onExport}
+                            disabled={selectedCount === 0}
                             className="w-full sm:w-auto px-6 py-2.5 bg-[#0572FF] hover:bg-blue-700 rounded-lg font-medium text-sm transition-colors"
                         >
-                            Export to Excel
+                            {selectedCount > 0 ? `Export ${selectedCount} Selected` : 'Export to Excel'}
                         </button>
                         <button
                             onClick={onLogout}

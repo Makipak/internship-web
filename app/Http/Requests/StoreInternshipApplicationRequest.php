@@ -19,7 +19,7 @@ class StoreInternshipApplicationRequest extends FormRequest
     {
         return [
             'first_name' => ['required', 'string', 'max:100'],
-            'last_name'  => ['required', 'string', 'max:100'],
+            'last_name'  => ['sometimes', 'nullable', 'max:100'],
             'email'      => ['required', 'email', 'max:255'],
             'phone'      => ['required', 'string', 'max:20'],
             'about'      => ['required', 'string', 'max:2000'],
