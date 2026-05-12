@@ -39,9 +39,10 @@ test('can delete internship application', function () {
 
 test('can export internship applications', function () {
     $user = User::factory()->create();
-    InternshipApplication::factory(5)->create();
+    $apps = InternshipApplication::factory(5)->create();
+    $ids = $apps->pluck('id')->join(',');
 
-    $response = $this->actingAs($user)->getJson('/api/admin/internships/export');
+    $response = $this->actingAs($user)->getJson('/api/admin/internships/export?ids=' . $ids);
     $response->assertOk();
     $response->assertJsonStructure(['csv', 'fileName']);
     $this->assertStringContainsString('first_name', $response->json('csv'));
