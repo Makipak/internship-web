@@ -68,8 +68,8 @@ export default function AdminDashboard() {
         }
     }, [sortBy, sortDir]);
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         fetchApplications(1);
     }, [fetchApplications]);
 
