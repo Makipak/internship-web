@@ -12,13 +12,13 @@ interface LoginFormProps {
     onSubmit: (e: React.FormEvent) => void;
 }
 
-export default function LoginForm({ 
-    status, 
-    data, 
-    setData, 
-    errors, 
-    processing, 
-    onSubmit 
+export default function LoginForm({
+    status,
+    data,
+    setData,
+    errors,
+    processing,
+    onSubmit
 }: LoginFormProps) {
     const [showPassword, setShowPassword] = useState(false);
 
@@ -73,13 +73,13 @@ export default function LoginForm({
                             {showPassword ? (
                                 // Eye icon
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm7.938 0C21.673 16.053 17.523 19 12 19c-5.523 0-9.673-2.947-10.938-7C2.327 7.947 6.477 5 12 5c5.523 0 9.673 2.947 10.938 7z"/>
                                 </svg>
                             ):(
                                 // Eye-off icon
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                                     d="M13.875 18.825A10.05 10.05 0 0112 19c-5 0-9.27-3.11-11-7a11.05 11.05 0 012.38-3.36M6.18 6.18A9.956 9.956 0 0112 5c5 0 9.27 3.11 11 7a10.96 10.96 0 01-4.04 4.58M15 12a3 3 0 11-6 0 3 3 0 016 0zm6 6L3 3"/>
                                 </svg>
                             )}
@@ -99,11 +99,6 @@ export default function LoginForm({
                     {processing ? 'Logging in...' : 'Login'}
                 </button>
             </form>
-
-            {/* Footer info */}
-            <div className="mt-6 pt-6 border-t border-white/10 text-center text-white/40 text-xs">
-                <p>© 2026 AISSENTIAL · Internship Admin</p>
-            </div>
         </div>
     );
 }

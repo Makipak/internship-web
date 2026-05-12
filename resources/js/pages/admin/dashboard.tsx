@@ -155,18 +155,29 @@ export default function AdminDashboard() {
     // Hapus aplikasi
     const confirmDelete = async () => {
         if (!deleteId) return;
+        const idsToDelete = selectedIds.includes(deleteId) && selectedIds.length > 1
+            ? selectedIds
+            : [deleteId];
         try {
-            const response = await fetch(`/api/admin/internships/${deleteId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRF-TOKEN': csrfToken
+            const responses = await Promise.all(
+                idsToDelete.map((id) =>
+                    fetch(`/api/admin/internships/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRF-TOKEN': csrfToken,
+                        },
+                    })
+                )
+            );
+            for (const response of responses) {
+                if (!response.ok) {
+                    const data = await response.json();
+                    throw new Error(data.message || 'Failed to delete');
                 }
-            });
-            const data = await response.json();
-            if (!response.ok) throw new Error(data.message || 'Failed to delete');
-            setSelectedIds((prev) => prev.filter((id) => id !== deleteId));
+            }
+            setSelectedIds((prev) => prev.filter((id) => !idsToDelete.includes(id)));
             await fetchApplications(currentPage);
             setShowDeleteDialog(false);
             setDeleteId(null);
